@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Title</title>
+</head>
+<body>
+    <div class="container" th:if="${question != null}">
+        <p th:text="${question.question}" class="question"></p>
+
+        <form th:action="@{/result}" th:object=${input} method="post">
+            <input type="hidden" name="question_id" th:value="${question.question_id}"/>
+
+            <ul id="sortlist">
+                <li>
+                    <input type="hidden" name="option_a" value="1"/>
+                    <p th:text="${question.option_a}"></p>
+                </li>
+
+                <li>
+                    <input type="hidden" name="option_b" value="2"/>
+                    <p th:text="${question.option_b}"></p>
+                </li>
+
+                <li>
+                    <input type="hidden" name="option_c" value="3"/>
+                    <p th:text="${question.option_c}"></p>
+                </li>
+
+                <li>
+                    <input type="hidden" name="option_d" value="4"/>
+                    <p th:text="${question.option_d}"></p>
+                </li>
+
+                <li>
+                    <input type="hidden" name="option_e" value="5"/>
+                    <p th:text="${question.option_e}"></p>
+                </li>
+            </ul>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <p class="note">Drag-and-Drop to rank the answers in descending order.</p>
+    </div>
+
+    <div class="container" th:if="${question == null && result==null}">
+        <p class="error">Thank you for playing! There are no more questions.</p>
+    </div>
+
+    <div class="result-container" th:if="${result != null}">
+
+        <div class="stars-container" th:if="${result==0}">
+            <div th:each="star:${#numbers.sequence(1, 5)}"><i class="fa-regular fa-star"></i></div>
+        </div>
+
+        <div class="stars-container" th:if="${result!=0}">
+            <div th:each="star:${#numbers.sequence(1, result)}"><i class="fa-solid fa-star"></i></div>
+            <div th:if="${result<5}" th:each="star:${#numbers.sequence(result+1, 5)}"><i class="fa-regular fa-star"></i></div>
+        </div>
+
+        <div class="result-text-container" th:switch="${result}">
+            <p class="result-text" th:case=5>Awesome!</p>
+            <p class="result-text"th:case=3>Not Bad!</p>
+            <p class="result-text"th:case=2>Better luck next time!</p>
+            <p class="result-text"th:case=1>oops :(</p>
+            <p class="result-text"th:case=0>oops :(</p>
+        </div>
+
+        <a th:href="@{'/'+${question_id}}">Try Again</a>
+        <a th:href="@{'/'+${question_id==80 ? 1:question_id+1}}">Next Question</a>
+    </div>
+
+    <!-- INIT ON PAGE LOAD -->
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+          slist(document.getElementById("sortlist"));
+        });
+    </script>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>

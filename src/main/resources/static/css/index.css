@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400&family=Press+Start+2P&family=Roboto:wght@100;400&display=swap');
+
+
+*{
+    margin:0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    background:black;
+      color:white;
+}
+
+.container, .result-container{
+  width:500px;
+  margin:60px auto;
+}
+
+
+.question{
+  color:white;
+  margin-bottom:30px;
+  font-size:1.3rem;
+}
+
+.slist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.slist li {
+  margin-bottom:20px;
+}
+
+.slist li p{
+  padding: 15px;
+  border-radius:10px;
+  border: 1px solid #dfdfdf;
+  cursor:pointer;
+  font-size:1.2rem;
+}
+
+.slist li p:hover{
+    background:white;
+    color:black;
+}
+
+.slist li p.hint {
+  border: 4px solid yellow;
+}
+
+.slist li p.active {
+  border: 4px solid green;
+}
+
+button{
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius:10px;
+  margin: auto;
+  width: 50%;
+  margin-top:50px;
+  margin-bottom:50px;
+}
+
+.note{
+    color:gray;
+    font-style: italic;
+    font-weight: 400;
+}
+
+/*************** RESULT PAGE **************/
+.result-container{
+  color:white;
+  padding: 50px;
+}
+
+.stars-container{
+  display: flex;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.stars-container div{
+  margin:auto;
+}
+
+.stars-container div i{
+  font-size: 50px;
+  color:yellow;
+}
+
+.result-text{
+  text-align:center;
+  font-size:2rem;
+  margin-bottom: 50px;
+}
+
+.result-container a {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  cursor: pointer;
+  margin:auto;
+  border-radius:10px;
+  margin-bottom:50px;
+}
